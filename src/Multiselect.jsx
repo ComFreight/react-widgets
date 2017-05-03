@@ -205,10 +205,13 @@ var Multiselect = React.createClass({
       , busy
       , open
       , disabled
-      , readOnly } = this.props;
+      , readOnly
+      , inputProps
+    } = this.props;
 
     return (
       <SelectInput
+        {...inputProps}
         ref='input'
         tabIndex={tabIndex || 0}
         role='listbox'
@@ -326,7 +329,7 @@ var Multiselect = React.createClass({
 
     List = List || (groupBy && GroupableList) || PlainList
 
-    let elementProps = _.omitOwnProps(this, List);
+    let elementProps = _.omitOwnProps(this, List, SelectInput);
 
     let shouldRenderTags = !!dataItems.length
       , shouldRenderPopup = isFirstFocusedRender(this) || open

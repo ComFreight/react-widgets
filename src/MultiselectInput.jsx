@@ -11,6 +11,7 @@ class MultiselectInput extends React.Component {
     placeholder:  PropTypes.string,
     maxLength:    PropTypes.number,
     inputSize:    PropTypes.func,
+    inputProps:   PropTypes.object,
     onChange:     PropTypes.func.isRequired,
 
     disabled:     CustomPropTypes.disabled,
@@ -39,7 +40,7 @@ class MultiselectInput extends React.Component {
           onChange={onChange}
           value={value}
         />
-      )
+      );
   }
 
   focus() {

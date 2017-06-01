@@ -158,7 +158,7 @@ let Calendar = React.createClass({
   },
 
   componentWillReceiveProps(nextProps) {
-    var bottom  = VIEW_OPTIONS.indexOf(nextProps.initialView)
+    var bottom  = VIEW_OPTIONS.indexOf('month')
       , top     = VIEW_OPTIONS.indexOf(nextProps.finalView)
       , current = VIEW_OPTIONS.indexOf(this.state.view)
       , view    = this.state.view
@@ -308,10 +308,11 @@ let Calendar = React.createClass({
 
   @widgetEditable
   change(date){
-    if (this.state.view === this.props.initialView){
+    if (this.state.view === 'month') {
       this.changeCurrentDate(date)
       notify(this.props.onChange, date)
       this.focus();
+      this.setState({ view: this.props.initialView });
       return;
     }
 
@@ -354,7 +355,7 @@ let Calendar = React.createClass({
     return dates[method](this.props.currentDate, 1 * multi, unit)
   },
 
-   @widgetEditable
+  @widgetEditable
   handleKeyDown(e) {
     var ctrl = e.ctrlKey
       , key  = e.key
@@ -429,7 +430,7 @@ let Calendar = React.createClass({
   },
 
   isValidView(next) {
-    var bottom  = VIEW_OPTIONS.indexOf(this.props.initialView)
+    var bottom  = VIEW_OPTIONS.indexOf('month')
       , top     = VIEW_OPTIONS.indexOf(this.props.finalView)
       , current = VIEW_OPTIONS.indexOf(next);
 
